@@ -44,9 +44,14 @@
         nav ul li a {
             color: #fff;
             text-decoration: none;
+            cursor: pointer;
         }
         .content {
+            display: none;
             margin: 20px 0;
+        }
+        .active {
+            display: block;
         }
         footer {
             background: var(--primary-color);
@@ -88,6 +93,18 @@
             text-decoration: underline;
         }
     </style>
+    <script>
+        function showContent(sectionId) {
+            const sections = document.querySelectorAll('.content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+        window.onload = function() {
+            showContent('home');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -96,51 +113,53 @@
 
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#content">Content</a></li>
-            <li><a href="#library">Library</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact Me</a></li>
+            <li><a onclick="showContent('home')">Home</a></li>
+            <li><a onclick="showContent('content')">Content</a></li>
+            <li><a onclick="showContent('library')">Library</a></li>
+            <li><a onclick="showContent('about')">About</a></li>
+            <li><a onclick="showContent('contact')">Contact Me</a></li>
         </ul>
     </nav>
 
     <div class="container">
         <section class="signup">
             <h2>Sign Up for Updates</h2>
-            <form action="https://example.com/signup" method="post">
+            <form action="thank-you.html" method="post" target="_blank">
                 <input type="email" name="email" placeholder="Enter your email" required>
                 <button type="submit">Sign Up</button>
             </form>
         </section>
         
-        <section id="home" class="content">
+        <section id="home" class="content active">
             <h2>Welcome to The Digital Athenaeum</h2>
             <p>Welcome to The Digital Athenaeum, a blog dedicated to exploring books, podcasts, and research that spark curiosity and inspire learning. Join me for reflections on consumed wisdom and personal growth. Below are some of my recent blog posts:</p>
-
             <div class="blog-post">
                 <h3>Weekly Content Summary: [Week Number/Date Range]</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#post1">Read more...</a>
             </div>
-
             <div class="blog-post">
                 <h3>Investment Journey: [Week Number/Date Range]</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#post2">Read more...</a>
             </div>
-
             <div class="blog-post">
                 <h3>Exploring [Topic]</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#post3">Read more...</a>
             </div>
+        </section>
 
+        <section id="content" class="content">
+            <h2>Content</h2>
+            <p>Welcome to the content section of The Digital Athenaeum. Here you’ll find my latest blog posts, reflections on books, podcasts, and research that have sparked my curiosity. I aim to provide thoughtful insights on a variety of topics, including personal development, finance, and lifelong learning.</p>
+        </section>
+
+        <section id="library" class="content">
+            <h2>Library</h2>
+            <p>In the library, you can explore a curated collection of books, podcasts, and research documents that I have reviewed and recommend for further reading and listening. This section is dedicated to providing you with a treasure trove of resources to satisfy your intellectual curiosity.</p>
+        </section>
 
         <section id="about" class="content">
             <h2>About</h2>
             <p>Hello and welcome to <strong>The Digital Athenaeum</strong>! This blog is dedicated to exploring the books, podcasts, and research that have piqued my curiosity and inspired personal growth. Here, you’ll find reflections on the content I consume, with the aim of sparking your curiosity and encouraging deeper exploration.</p>
-            <p>Subscribers can expect thoughtful insights on a variety of topics, including personal development, finance, and lifelong learning. I also share updates on my investment journey, offering a transparent perspective on the financial world. I publish weekly, bringing you regular content that seeks to inspire and inform.</p>
-            <p>Thank you for inviting me into your inbox. I hope you find value and inspiration in the reflections and insights shared here.</p>
         </section>
 
         <section id="contact" class="content">
@@ -150,7 +169,7 @@
         </section>
 
         <section class="donate">
-            <h2>Support the Athenaeum</h2>
+            <h2>Support the Blog</h2>
             <form action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="business" value="your-paypal-email@example.com">
                 <input type="hidden" name="no_recurring" value="0">
